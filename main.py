@@ -1,38 +1,41 @@
+# By ConfusedCharacter
+# GitHub https://github.com/ConfusedCharacter/Password-Generator
+
+import json
+from itertools import chain, combinations
 print("\n\t| Password Generator |\n\nNote: This Passwords are good for cracking.\n")
+
+dic = json.loads(open("dic.json").read())
+
+def powerset(iterable):
+    s = list(iterable)
+    return list(chain.from_iterable(combinations(s, r) for r in range(len(s)+1)))
+
+def gen(word):
+    words = []
+    words.append(word.lower())
+    words.append(word.upper())
+    words.append(word.capitalize())
+    value = ""
+    for y,z in dic.items():
+        value += (y)
+    
+    for i in powerset(value):
+        text = word
+        for a in i:
+            text = text.lower().replace(a,dic[a])
+
+        words.append(text)
+        words.append(text.lower())
+        words.append(text.upper())
+
+
+    return "\n".join(set(words))
+
+
 while True:
-    def get(word):
-        hit=[]
-        hit.append(word.lower())
-        hit.append(word.upper())
-        hit.append(word.capitalize())
-        hit.append(word.lower().replace("o","0"))
-        hit.append(word.lower().replace("i","!"))
-        hit.append(word.lower().replace("a","4"))
-        hit.append(word.lower().replace("s","$"))
-        hit.append(word.lower().replace("e","3"))
-        hit.append(word.lower().replace("s","$").replace("A","4").replace("i","!").replace("o","0").replace("e","3"))
-        hit.append(word.lower().replace("s","$").replace("A","4").replace("i","!").replace("o","0").replace("e","3").upper())
-        hit.append(word.lower().replace("o","0").replace("i","!"))
-        hit.append(word.lower().replace("o","0").replace("a","4"))
-        hit.append(word.lower().replace("o","0").replace("s","$"))
-        hit.append(word.lower().replace("o","0").replace("e","3"))
-        hit.append(word.lower().replace("i","!").replace("a","4"))
-        hit.append(word.lower().replace("i","!").replace("s","$"))
-        hit.append(word.lower().replace("i","!").replace("e","3"))
-        hit.append(word.lower().replace("a","4").replace("s","$"))
-        hit.append(word.lower().replace("a","4").replace("e","3"))
-        hit.append(word.lower().replace("s","$").replace("e","3"))
-        hit.append(word.lower().replace("o","0").replace("i","!").replace("a","4"))
-        hit.append(word.lower().replace("o","0").replace("a","4").replace("s","$"))
-        hit.append(word.lower().replace("o","0").replace("e","3").replace("s","$"))
-        hit.append(word.lower().replace("i","!").replace("a","4").replace("s","$"))
-        hit.append(word.lower().replace("i","!").replace("e","3").replace("s","$"))
-        hit.append(word.lower().replace("a","4").replace("s","$").replace("e","3"))
-
-        return "\n".join(set(hit))
-
     name = input("[+] Enter Word : ")
     for x in name.split(","):
-        data = get(x)
+        data = gen(x)
         print(data)
         open("passwords-saved.txt",'a').write(data+"\n")
