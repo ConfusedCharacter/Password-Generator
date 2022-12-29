@@ -1,0 +1,38 @@
+print("\n\t| Password Generator |\n\nNote: This Passwords are good for cracking.\n")
+while True:
+    def get(word):
+        hit=[]
+        hit.append(word.lower())
+        hit.append(word.upper())
+        hit.append(word.capitalize())
+        hit.append(word.lower().replace("o","0"))
+        hit.append(word.lower().replace("i","!"))
+        hit.append(word.lower().replace("a","4"))
+        hit.append(word.lower().replace("s","$"))
+        hit.append(word.lower().replace("e","3"))
+        hit.append(word.lower().replace("s","$").replace("A","4").replace("i","!").replace("o","0").replace("e","3"))
+        hit.append(word.lower().replace("s","$").replace("A","4").replace("i","!").replace("o","0").replace("e","3").upper())
+        hit.append(word.lower().replace("o","0").replace("i","!"))
+        hit.append(word.lower().replace("o","0").replace("a","4"))
+        hit.append(word.lower().replace("o","0").replace("s","$"))
+        hit.append(word.lower().replace("o","0").replace("e","3"))
+        hit.append(word.lower().replace("i","!").replace("a","4"))
+        hit.append(word.lower().replace("i","!").replace("s","$"))
+        hit.append(word.lower().replace("i","!").replace("e","3"))
+        hit.append(word.lower().replace("a","4").replace("s","$"))
+        hit.append(word.lower().replace("a","4").replace("e","3"))
+        hit.append(word.lower().replace("s","$").replace("e","3"))
+        hit.append(word.lower().replace("o","0").replace("i","!").replace("a","4"))
+        hit.append(word.lower().replace("o","0").replace("a","4").replace("s","$"))
+        hit.append(word.lower().replace("o","0").replace("e","3").replace("s","$"))
+        hit.append(word.lower().replace("i","!").replace("a","4").replace("s","$"))
+        hit.append(word.lower().replace("i","!").replace("e","3").replace("s","$"))
+        hit.append(word.lower().replace("a","4").replace("s","$").replace("e","3"))
+
+        return "\n".join(set(hit))
+
+    name = input("[+] Enter Word : ")
+    for x in name.split(","):
+        data = get(x)
+        print(data)
+        open("passwords-saved.txt",'a').write(data+"\n")
