@@ -8,7 +8,7 @@
 ## Run:
 
 ```bash
-$ git clone https://github.com/ConfusedCharacter/Password-Generator
+$ git clone https://github.com/ConfusedCharacter/Password-Generator; cd Password-Generator
 ```
 
 ```bash
